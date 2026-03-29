@@ -1,0 +1,239 @@
+-- Load Rayfield
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+-- Create Window 
+local Window = Rayfield:CreateWindow({
+   Name = "open bridge for brainrot",
+   LoadingTitle = "by botak hubs",
+   LoadingSubtitle = "Delta Executor Optimized",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = "BotakHubs",
+      FileName = "OpenBridgeHub"
+   },
+   Discord = {
+      Enabled = false,
+      Invite = "noinvitelink",
+      RememberJoins = true
+   },
+   KeySystem = false
+})
+
+-- Variables for loops and inputs
+local _G = {}
+_G.AutoBrainrot = false
+_G.AutoFloor = false
+_G.AutoSpeed1 = false
+_G.AutoSpeed2 = false
+_G.AutoSpeed5 = false
+_G.AutoCarry = false
+_G.AutoRebirth = false
+_G.InstantInteract = false
+_G.InfJump = false
+
+-- Create Tabs
+local MainTab = Window:CreateTab("Teleports", 4483362458)
+local UpgradesTab = Window:CreateTab("Auto Upgrades", 4483362458)
+local PlayerTab = Window:CreateTab("Player Mods", 4483362458)
+
+---------------------------------------------------------------------------
+-- MAIN TAB (Teleports)
+---------------------------------------------------------------------------
+MainTab:CreateButton({
+   Name = "tp to ends",
+   Callback = function()
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(16.9999695, 1.375, 6189.5, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+   end,
+})
+
+MainTab:CreateButton({
+   Name = "instant",
+   Callback = function()
+       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(13.5126953, 3.41963863, 37.8863831, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+   end,
+})
+
+---------------------------------------------------------------------------
+-- UPGRADES TAB (Auto Farm / Remotes)
+---------------------------------------------------------------------------
+UpgradesTab:CreateSection("Brainrot & Floor Upgrades")
+
+UpgradesTab:CreateToggle({
+   Name = "up brainrot 1 - 100",
+   CurrentValue = false,
+   Flag = "BrainrotToggle",
+   Callback = function(Value)
+       _G.AutoBrainrot = Value
+       while _G.AutoBrainrot do
+           -- Loops from 1 to 100 sequentially
+           for i = 1, 100 do
+               if not _G.AutoBrainrot then break end -- Stops instantly if toggled off
+               local args = { "CashUpgradeBrainrot", "1", tostring(i) }
+               game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("EventManagerClient"):WaitForChild("ServerEvent"):FireServer(unpack(args))
+               task.wait(0.05) -- Fast fire rate
+           end
+           task.wait(0.5)
+       end
+   end,
+})
+
+UpgradesTab:CreateToggle({
+   Name = "up floor 1 - 100",
+   CurrentValue = false,
+   Flag = "FloorToggle",
+   Callback = function(Value)
+       _G.AutoFloor = Value
+       while _G.AutoFloor do
+           -- Loops from 1 to 100 sequentially
+           for i = 1, 100 do
+               if not _G.AutoFloor then break end -- Stops instantly if toggled off
+               local args = { "PurchaseFloor", i }
+               game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("EventManagerClient"):WaitForChild("ServerEvent"):FireServer(unpack(args))
+               task.wait(0.05) -- Fast fire rate
+           end
+           task.wait(0.5)
+       end
+   end,
+})
+
+UpgradesTab:CreateSection("Speed & Carry Toggles")
+
+UpgradesTab:CreateToggle({
+   Name = "speed up 1",
+   CurrentValue = false,
+   Flag = "Speed1Toggle",
+   Callback = function(Value)
+       _G.AutoSpeed1 = Value
+       while _G.AutoSpeed1 do
+           local args = { "BuySpeed", 1 }
+           game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("EventManagerClient"):WaitForChild("ServerEvent"):FireServer(unpack(args))
+           task.wait(0.5)
+       end
+   end,
+})
+
+UpgradesTab:CreateToggle({
+   Name = "speed up 2",
+   CurrentValue = false,
+   Flag = "Speed2Toggle",
+   Callback = function(Value)
+       _G.AutoSpeed2 = Value
+       while _G.AutoSpeed2 do
+           local args = { "BuySpeed", 2 }
+           game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("EventManagerClient"):WaitForChild("ServerEvent"):FireServer(unpack(args))
+           task.wait(0.5)
+       end
+   end,
+})
+
+UpgradesTab:CreateToggle({
+   Name = "up speed 5",
+   CurrentValue = false,
+   Flag = "Speed5Toggle",
+   Callback = function(Value)
+       _G.AutoSpeed5 = Value
+       while _G.AutoSpeed5 do
+           local args = { "BuySpeed", 3 }
+           game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("EventManagerClient"):WaitForChild("ServerEvent"):FireServer(unpack(args))
+           task.wait(0.5)
+       end
+   end,
+})
+
+UpgradesTab:CreateToggle({
+   Name = "carry up",
+   CurrentValue = false,
+   Flag = "CarryToggle",
+   Callback = function(Value)
+       _G.AutoCarry = Value
+       while _G.AutoCarry do
+           local args = { "BuyCarryCapacity" }
+           game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("EventManagerClient"):WaitForChild("ServerEvent"):FireServer(unpack(args))
+           task.wait(0.5)
+       end
+   end,
+})
+
+UpgradesTab:CreateToggle({
+   Name = "rebirth",
+   CurrentValue = false,
+   Flag = "RebirthToggle",
+   Callback = function(Value)
+       _G.AutoRebirth = Value
+       while _G.AutoRebirth do
+           local args = { "Rebirth" }
+           game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("EventManagerClient"):WaitForChild("ServerEvent"):FireServer(unpack(args))
+           task.wait(0.5)
+       end
+   end,
+})
+
+---------------------------------------------------------------------------
+-- PLAYER MODS TAB
+---------------------------------------------------------------------------
+local function optimizePrompts()
+    for _, v in ipairs(workspace:GetDescendants()) do
+        if v:IsA("ProximityPrompt") then
+            v.HoldDuration = 0
+        end
+    end
+end
+
+PlayerTab:CreateToggle({
+    Name = "Instant Interact (No Laggy)",
+    CurrentValue = false,
+    Flag = "InstantInteract",
+    Callback = function(Value)
+        _G.InstantInteract = Value
+        if _G.InstantInteract then
+            optimizePrompts()
+        end
+    end,
+})
+
+workspace.DescendantAdded:Connect(function(descendant)
+    if _G.InstantInteract and descendant:IsA("ProximityPrompt") then
+        descendant.HoldDuration = 0
+    end
+end)
+
+PlayerTab:CreateSlider({
+   Name = "Speed Slider",
+   Range = {16, 800},
+   Increment = 1,
+   Suffix = "WalkSpeed",
+   CurrentValue = 16,
+   Flag = "SpeedSlider",
+   Callback = function(Value)
+       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+   end,
+})
+
+PlayerTab:CreateButton({
+   Name = "Speed Reset",
+   Callback = function()
+       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+   end,
+})
+
+PlayerTab:CreateToggle({
+    Name = "InfJump",
+    CurrentValue = false,
+    Flag = "InfJump",
+    Callback = function(Value)
+        _G.InfJump = Value
+    end,
+})
+
+game:GetService("UserInputService").JumpRequest:Connect(function()
+    if _G.InfJump then
+        game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):ChangeState("Jumping")
+    end
+end)
+
+PlayerTab:CreateButton({
+   Name = "FOV 120",
+   Callback = function()
+       workspace.CurrentCamera.FieldOfView = 120
+   end,
+})
